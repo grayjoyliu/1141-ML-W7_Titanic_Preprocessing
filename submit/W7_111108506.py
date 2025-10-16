@@ -35,7 +35,7 @@ def remove_outliers(df):
     fare_mean = df["Fare"].mean()
     fare_std = df["Fare"].std()
     
-    df = df[df["Fare"] <= fare_mean + 3 * fare_std]
+    df = df[df["Fare"] <= fare_mean + 3 * fare_std].reset_index(drop=True)
     return df
 
 

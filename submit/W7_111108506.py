@@ -53,8 +53,7 @@ def scale_features(df):
     # TODO 5.1: 使用 StandardScaler 標準化 Age、Fare
     scaler = StandardScaler()
     df_scaled = df.copy()
-    df_scaled["Age_z"] = scaler.fit_transform(df[["Age"]])
-    df_scaled["Fare_z"] = scaler.fit_transform(df[["Fare"]])
+    df_scaled[["Age_z", "Fare_z"]] = scaler.fit_transform(df[["Age", "Fare"]])
     return df_scaled
 
 
@@ -88,4 +87,4 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = split_data(df)
     save_data(df, output_path)
 
-    print("Titanic 資料前處理完成")cd /workspaces/1141-ML-W7_Titanic_Preprocessing
+    print("Titanic 資料前處理完成")

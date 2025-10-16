@@ -31,9 +31,10 @@ def handle_missing(df):
 def remove_outliers(df):
     # TODO 3.1: 計算 Fare 平均與標準差
     # TODO 3.2: 移除 Fare > mean + 3*std 的資料
+    df["Fare"] = df["Fare"].fillna(df["Fare"].median())
     fare_mean = df["Fare"].mean()
     fare_std = df["Fare"].std()
-    df["Fare"] = df["Fare"].fillna(df["Fare"].median())
+    
     df = df[df["Fare"] <= fare_mean + 3 * fare_std]
     return df
 

@@ -33,7 +33,7 @@ def remove_outliers(df):
     # TODO 3.2: 移除 Fare > mean + 3*std 的資料
     fare_mean = df["Fare"].mean()
     fare_std = df["Fare"].std()
-
+    df["Fare"] = df["Fare"].fillna(df["Fare"].median())
     df = df[df["Fare"] <= fare_mean + 3 * fare_std]
     return df
 
@@ -53,7 +53,8 @@ def scale_features(df):
     # TODO 5.1: 使用 StandardScaler 標準化 Age、Fare
     scaler = StandardScaler()
     df_scaled = df.copy()
-    df_scaled[["Age_z", "Fare_z"]] = scaler.fit_transform(df[["Age", "Fare"]])
+    df_scaled["Age"] = scaler.fit_transform(df[["Age"]])
+    df_scaled["Fare"] = scaler.fit_transform(df[["Fare"]])
     return df_scaled
 
 
